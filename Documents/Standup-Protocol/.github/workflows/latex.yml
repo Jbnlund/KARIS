@@ -21,7 +21,7 @@ jobs:
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v4
         with:
-          root_file: mötesprotokoll.tex
+          root_file: KARI/Documents/Standup-Protocol/Standup.tex
 
       - name: Prepare website
         run: |
