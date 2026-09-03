@@ -11,7 +11,7 @@
 % ── Header ──────────────────────────────────────────────────────────────
 \begin{center}
   {\LARGE\bfseries Mötesprotokoll}\\[0.5em]
-  {KAHRIS (Kitting automation humanoid robots (in) industrial settings)}
+  {KAHRIS (Kitting automation robots (in) industrial settings)}
 \end{center}
 
 \bigskip
