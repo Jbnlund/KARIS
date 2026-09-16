@@ -1,0 +1,4 @@
+source ~/miniconda3/bin/activate
+conda create -n kitting python=3.10 -y
+conda activate kitting
+pip install ultralytics pyrealsense2 opencv-python
