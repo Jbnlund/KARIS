@@ -2,3 +2,11 @@ source ~/miniconda3/bin/activate
 conda create -n kitting python=3.10 -y
 conda activate kitting
 pip install ultralytics pyrealsense2 opencv-python
+
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo iptables -t nat -A POSTROUTING -o wlp0s20f3 -j MASQUERADE
+sudo iptables -A FORWARD -i enx50a03000b0dc -o wlp0s20f3 -j ACCEPT
+sudo iptables -A FORWARD -i wlp0s20f3 -o enx50a03000b0dc -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+sudo ip route add default via 192.168.123.222
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
