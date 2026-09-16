@@ -8,17 +8,17 @@ from ultralytics import YOLO
 
 # Trained YOLO model
 MODEL_PATH = Path(
-    r"C:\Users\gusta\Desktop\Skolarbete\Skolarbete\Åk5\Testrepot\KARIS\VisionAspect\Models\YOLO26\runs\karis_yolo26m\weights\best.pt"
+    r"C:\Users\kimsv\PycharmProjects\KARIS\VisionAspect\Models\YOLO26\runs\segment\runs\segment\karis_yolo26m\weights\best.pt"
 )
 
 # Folder containing UNANNOTATED images
 IMAGE_FOLDER = Path(
-    r"C:\Users\gusta\Desktop\Skolarbete\Skolarbete\KARISprojectBilder\Unannotated"
+    r"C:\Users\kimsv\OneDrive - Mälardalens universitet\Desktop\photoes"
 )
 
 # Where visualized predictions will be saved
 OUTPUT_DIR = Path(
-    r"C:\Users\gusta\Desktop\Skolarbete\Skolarbete\Åk5\Testrepot\KARIS\VisionAspect\Models\YOLO26\runs\unannotated_test"
+    r"C:\Users\kimsv\OneDrive - Mälardalens universitet\Desktop\unannote_temp"
 )
 
 IMAGE_SIZE = 1280

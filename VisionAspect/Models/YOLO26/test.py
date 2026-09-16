@@ -7,7 +7,7 @@ from ultralytics import YOLO
 # ============================================================
 
 DATASET_ROOT = Path(
-    r"C:\Users\gusta\Desktop\Skolarbete\Skolarbete\KARISprojektBilder\KARIS.v1-test1.yolo26"
+    r"C:\Users\kimsv\OneDrive - Mälardalens universitet\Desktop\KARIS.v1-test1.yolo26"
 )
 
 DATA_YAML = DATASET_ROOT / "data.yaml"
@@ -15,15 +15,15 @@ DATA_YAML = DATASET_ROOT / "data.yaml"
 TEST_IMAGES = DATASET_ROOT / "test" / "images"
 
 MODEL_PATH = Path(
-    r"C:\Users\gusta\Desktop\Skolarbete\Skolarbete\Åk5\Testrepot\KARIS\VisionAspect\Models\YOLO26\runs\karis_yolo26m\weights\best.pt"
+    r"C:\Users\kimsv\PycharmProjects\KARIS\VisionAspect\Models\YOLO26\runs\segment\runs\segment\karis_yolo26m\weights\best.pt"
 )
 
 OUTPUT_DIR = Path(
-    r"C:\Users\gusta\Desktop\Skolarbete\Skolarbete\Åk5\Testrepot\KARIS\VisionAspect\Models\YOLO26\runs\test"
+    r"C:\Users\kimsv\OneDrive - Mälardalens universitet\Desktop\temp"
 )
 
 IMAGE_SIZE = 1280
-BATCH_SIZE = 4
+BATCH_SIZE = 1
 DEVICE = 0
 
 # Minimum confidence required to visualize a prediction

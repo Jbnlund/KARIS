@@ -4,13 +4,12 @@ from ultralytics import YOLO
 
 from data_augmentation import AUGMENTATION_CONFIG
 
-
 # ============================================================
 # CONFIGURATION
 # ============================================================
 
 DATASET_ROOT = Path(
-    r"C:\Users\gusta\Desktop\Skolarbete\Skolarbete\KARISprojektBilder\KARIS.v1-test1.yolo26"
+    r"C:\Users\kimsv\OneDrive - Mälardalens universitet\Desktop\KARIS.v1-test1.yolo26"
 )
 
 DATA_YAML = DATASET_ROOT / "data.yaml"
@@ -21,7 +20,7 @@ MODEL = "yolo26m-seg.pt"
 # Training settings
 EPOCHS = 100
 IMAGE_SIZE = 1280
-BATCH_SIZE = 8
+BATCH_SIZE = 1
 
 # GPU
 DEVICE = 0
