@@ -1,0 +1,84 @@
+from pathlib import Path
+from ultralytics import YOLO
+
+
+# ============================================================
+# CONFIGURATION
+# ============================================================
+
+# Trained YOLO model
+MODEL_PATH = Path(
+    r"C:\Users\kimsv\PycharmProjects\KARIS\VisionAspect\Models\YOLO8\runs\segment\runs\segment\karis_yolov8n\weights\best.pt"
+)
+
+# Folder containing UNANNOTATED images
+IMAGE_FOLDER = Path(
+    r"C:\Users\kimsv\OneDrive - Mälardalens universitet\Desktop\photoes"
+)
+
+# Where visualized predictions will be saved
+OUTPUT_DIR = Path(
+    r"C:\Users\kimsv\OneDrive - Mälardalens universitet\Desktop\unannote_temp8"
+)
+
+IMAGE_SIZE = 1280
+DEVICE = 0
+
+# Minimum confidence required for a prediction to be shown
+CONFIDENCE = 0.25
+
+
+# ============================================================
+# INFERENCE
+# ============================================================
+
+def test_unannotated_images():
+
+    # Check that model exists
+    if not MODEL_PATH.exists():
+        raise FileNotFoundError(
+            f"Could not find model:\n{MODEL_PATH}"
+        )
+
+    # Check that image folder exists
+    if not IMAGE_FOLDER.exists():
+        raise FileNotFoundError(
+            f"Could not find image folder:\n{IMAGE_FOLDER}"
+        )
+
+    print("Loading trained model...")
+    model = YOLO(str(MODEL_PATH))
+
+    print("\nRunning inference on unannotated images...")
+
+    results = model.predict(
+        source=str(IMAGE_FOLDER),
+
+        imgsz=IMAGE_SIZE,
+        conf=CONFIDENCE,
+        device=DEVICE,
+
+        # Visualization
+        show_labels=True,
+        show_conf=True,
+        boxes=True,
+
+        # Save visualized predictions
+        save=True,
+        project=str(OUTPUT_DIR),
+        name="predictions",
+    )
+
+    print("\nInference complete.")
+    print(f"Processed {len(results)} images.")
+    print(f"Visualizations saved to:\n{OUTPUT_DIR / 'predictions'}")
+
+    return results
+
+
+# ============================================================
+# MAIN
+# ============================================================
+
+if __name__ == "__main__":
+    test_unannotated_images()
