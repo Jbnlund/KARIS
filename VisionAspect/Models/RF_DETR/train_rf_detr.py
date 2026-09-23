@@ -12,9 +12,11 @@ import rfdetr
 
 
 DEFAULT_DATASET_ROOT = Path(
-    r"D:\Robotik Projektkurs\repository\private\KARIS\VisionAspect\Data\KARIS.v8i.coco-segmentation"
+    r"C:\Users\kimsv\PycharmProjects\KARIS_2\VisionAspect\Data\KARIS.v8i.coco-segmentation"
 )
 DEFAULT_OUTPUT_DIR = Path("runs/rf_detr")
+DEFAULT_EPOCHS = 20
+DEFAULT_BATCH_SIZE = 1
 
 
 def _resolve_device(device: str | None = None) -> str:
@@ -79,11 +81,11 @@ def create_smoke_subset(dataset_root: Path, output_dir: Path, max_train_images: 
 def train_rf_detr(
     dataset_root: Path = DEFAULT_DATASET_ROOT,
     output_dir: Path = DEFAULT_OUTPUT_DIR,
-    epochs: int = 1,
-    batch_size: int = 1,
+    epochs: int = DEFAULT_EPOCHS,
+    batch_size: int = DEFAULT_BATCH_SIZE,
     device: str | None = None,
     lr: float = 1e-4,
-    subset_samples: int | None = None,
+    subset_samples: int | None = 0,
 ):
     dataset_root = dataset_root.resolve()
     ann_train = dataset_root / "train" / "_annotations.coco.json"
@@ -92,7 +94,12 @@ def train_rf_detr(
 
     selected_root = dataset_root
     if subset_samples is not None and subset_samples > 0:
-        selected_root = create_smoke_subset(dataset_root, output_dir, max_train_images=subset_samples, max_val_images=max(1, subset_samples // 2))
+        selected_root = create_smoke_subset(
+            dataset_root,
+            output_dir,
+            max_train_images=subset_samples,
+            max_val_images=max(1, subset_samples // 2),
+        )
 
     selected_root = selected_root.resolve()
     output_dir = output_dir.resolve()
@@ -112,6 +119,7 @@ def train_rf_detr(
         num_workers=0,
         lr=lr,
         accelerator="gpu" if device_name.startswith("cuda") else "cpu",
+        progress_bar="tqdm",
     )
 
     checkpoint = output_dir / "checkpoint_best_total.pth"
@@ -123,11 +131,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train RF-DETR Seg Medium on a COCO instance-segmentation dataset.")
     parser.add_argument("--dataset-root", type=Path, default=DEFAULT_DATASET_ROOT)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
-    parser.add_argument("--epochs", type=int, default=1)
-    parser.add_argument("--batch-size", type=int, default=1)
+    parser.add_argument("--epochs", type=int, default=DEFAULT_EPOCHS)
+    parser.add_argument("--batch-size", type=int, default=DEFAULT_BATCH_SIZE)
     parser.add_argument("--lr", type=float, default=1e-4)
     parser.add_argument("--device", type=str, default=None, help="cuda, cpu, or cuda:0")
-    parser.add_argument("--subset-samples", type=int, default=4, help="If set > 0, train on a tiny subset first for smoke testing.")
+    parser.add_argument(
+        "--subset-samples",
+        type=int,
+        default=0,
+        help="Optional tiny smoke subset. Default 0 means train on the full dataset.",
+    )
     args = parser.parse_args()
 
     train_rf_detr(
