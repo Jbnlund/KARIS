@@ -11,12 +11,12 @@ DATASET_ROOT = Path(
 
 DATA_YAML = DATASET_ROOT / "data.yaml" 
 
-MODEL = "yolo8n-seg.pt" # model m for medium version
+MODEL = "yolov8n-seg.pt" # model m for medium version
 
 # training settings, adjust for the hardware you train on
-EPOCHS = 20
+EPOCHS = 40
 IMAGE_SIZE = 1280 # pixels
-BATCH_SIZE = 1 # if you run out of GPU memory lower this
+BATCH_SIZE = 2 # if you run out of GPU memory lower this
 DEVICE = 0 # GPU training
 
 
@@ -34,7 +34,7 @@ HSV_V = 0.3
 
 # geometric augmentations
 DEGREES = 45.0 # +- deg
-TRANSLATE = 0.1 # object can be moved % away from orig pos
+TRANSLATE = 0.15 # object can be moved % away from orig pos
 SCALE = 0.3 # size scaling
 PERSPECTIVE = 0.0005 # changes perspective through size change
 
@@ -43,7 +43,7 @@ FLIPLR = 0.5 # chance to flip object horizontally
 FLIPUD = 0.5 # chance to flip object vertically
 
 # YOLO-specific, these augmentations can be heavy (hardware-wise)
-MOSAIC = 0.25 # chance to combine many images into one
+MOSAIC = 0.3 # chance to combine many images into one
 MIXUP = 0.0 # chance to blend images into one
 COPY_PASTE = 0.0 # chance to take objects from one img into another
 
@@ -80,7 +80,7 @@ def train():
             device=DEVICE,
 
             project="runs/segment",
-            name="karis_yolo26m",
+            name="karis_yolov8n",
 
             hsv_h=HSV_H,
             hsv_s=HSV_S,
@@ -109,7 +109,7 @@ def train():
             device=DEVICE,
 
             project="runs/segment",
-            name="karis_yolo26m",
+            name="karis_yolov8n",
 
             hsv_h=0.0,
             hsv_s=0.0,
