@@ -1,0 +1,9 @@
+torch>=2.0.0
+torchvision
+pycocotools
+rfdetr[train,loggers]
+Pillow
+tqdm
+pyyaml
+numpy
+opencv-python
