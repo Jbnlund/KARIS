@@ -6,14 +6,14 @@ from ultralytics import YOLO  # pip install ultralytics
 # CONFIG
 # ----------------------------------------------------------------------------
 DATASET_ROOT = Path(
-    r"C:\Users\kimsv\OneDrive - Mälardalens universitet\Desktop\KARIS.v1-test1.yolo26"
+    r"C:\Users\kimsv\PycharmProjects\KARIS_2\VisionAspect\Data\KARIS.v8i.yolo-from-coco"
 )
 DATA_YAML = DATASET_ROOT / "data.yaml"
 
 # n = nano, s = small, m = medium. Compare s/m against your n baseline.
 # "yolo26s-seg.pt" is also worth a run (NMS-free, needs a recent ultralytics).
-MODEL = "yolov8s-seg.pt"
-RUN_NAME = "karis_yolov8s"
+MODEL = "yolov8n-seg.pt"
+RUN_NAME = "karis_yolov8n"
 
 # training
 EPOCHS = 50
